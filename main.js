@@ -57,14 +57,11 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 let currentDate = new Date();
-
 let timeHTML = document.createElement('h2');
 let hours = document.createElement('span');
 hours.innerHTML = currentDate.getHours();
 let amOrPm = 'AM';
 if((currentDate.getHours() > 12) || (currentDate.getHours() == 0)) {
-  console.log(currentDate.getHours()==0);
-
   if(currentDate.getHours() == 0) {
     console.log(currentDate.getHours()==0);
     hours.innerHTML = 12;
@@ -74,9 +71,17 @@ if((currentDate.getHours() > 12) || (currentDate.getHours() == 0)) {
     amOrPm = 'PM';
   }
 }
+if(currentDate.getHours() < 10){
+  hours.innerHTML = '0' + currentDate.getHours();
+}
 timeHTML.appendChild(hours);
 let minutes = document.createElement('span');
-minutes.innerHTML = ':' + currentDate.getMinutes();
+if (currentDate.getMinutes() < 10) {
+  minutes.innerHTML = ':0' + currentDate.getMinutes();
+}
+else {
+  minutes.innerHTML = ':' + currentDate.getMinutes();
+}
 timeHTML.appendChild(minutes);
 let timeOfDay = document.createElement('span');
 timeOfDay.innerHTML = amOrPm;
